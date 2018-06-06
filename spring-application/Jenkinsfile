@@ -14,7 +14,10 @@ pipeline {
      }
     }
 	stage('Build spring container') {
-	     docker.build("dockerfile") 
+	 steps {
+	    docker.build("dockerfile")
+	 }
+	      
 		 } 
    }
   }
