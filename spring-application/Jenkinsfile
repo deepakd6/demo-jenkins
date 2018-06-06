@@ -10,8 +10,11 @@ pipeline {
       }
      }
      steps {
-       sh 'mvn clean compile install'
+       sh 'mvn clean install'
      }
     }
+	stage('Build spring container') {
+	     docker.build("dockerfile") 
+		 } 
    }
   }
