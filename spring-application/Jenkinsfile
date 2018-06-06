@@ -10,14 +10,19 @@ pipeline {
       }
      }
      steps {
-       sh 'mvn clean install'
+       sh 'mvn compile'
      }
     }
-	stage('Build spring container') {
-	 steps {
-	   sh 'docker build -f dockerfile -t demo-1'
-	 }
-	      
-		 } 
+	stage('Run spring-boot ') {
+     agent {
+      docker {
+       image 'maven:3.5.0'
+      }
+     }
+     steps {
+       sh 'mvn spring-boot:run'
+     }
+    }
+	
    }
   }
