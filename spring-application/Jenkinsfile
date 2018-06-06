@@ -13,13 +13,7 @@ pipeline {
        sh 'mvn compile'
      }
     }
-	stage('Docker Build spring-boot') {
-      agent any
-      steps {
-        sh 'docker build -t demo-1:latest .'
-      }
 	
-    }
 	
    }
   }
