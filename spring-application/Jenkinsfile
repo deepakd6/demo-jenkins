@@ -3,17 +3,21 @@
 pipeline {
   agent none
   stages {
-    stage('Maven clean compile install') {
-     agent {
-      docker {
-       image 'maven:3.5.0'
+    stage('Maven Install') {
+      agent {
+        docker {
+          image 'maven:3.5.0'
+        }
       }
-     }
-     steps {
-       sh 'mvn compile'
-     }
+      steps {
+        sh 'mvn clean install'
+      }
     }
-	
-	
-   }
+    stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t demo-1:latest .'
+      }
+    }
   }
+}
