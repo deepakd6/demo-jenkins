@@ -16,13 +16,13 @@ pipeline {
     stage('Docker Build spring-boot') {
       agent any
       steps {
-        sh 'docker build -t demo-2:latest .'
+        sh 'docker build -t demo-3:latest .'
       }
     }
     stage('Docker Build MYSQL') {
       agent any
       steps {
-        sh 'docker build -f Dockerfile -t sql-demo-2 .'
+        sh 'docker build -f Dockerfile -t sql-demo-3 .'
       }
     }
   }
