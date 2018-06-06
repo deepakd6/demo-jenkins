@@ -15,7 +15,7 @@ pipeline {
     }
 	stage('Build spring container') {
 	 steps {
-	    docker.build("dockerfile")
+	   sh 'docker build -f dockerfile -t demo-1'
 	 }
 	      
 		 } 
