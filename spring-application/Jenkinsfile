@@ -13,25 +13,25 @@ pipeline {
         sh 'mvn clean install'
       }
     }
-    stage('Docker Build spring-boot') {
+    stage('Docker Build spring-boot Image') {
       agent any
       steps {
         sh 'docker build -t demo-4:latest .'
       }
     }
-    stage('Docker Build MYSQL') {
+    stage('Docker Build MYSQL Image') {
       agent any
       steps {
         sh 'docker build -f Dockerfile -t sql-demo-4 .'
       }
     }
-	stage('Docker Build MYSQL') {
+	stage('Docker Run MYSQL Container') {
       agent any
       steps {
         sh 'docker run sql-demo-4 .'
       }
     }
-	stage('Docker Active containers') {
+	stage('Docker Show Active containers') {
       agent any
       steps {
         sh 'docker ps'
