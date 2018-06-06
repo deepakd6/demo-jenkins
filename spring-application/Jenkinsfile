@@ -13,10 +13,16 @@ pipeline {
         sh 'mvn clean install'
       }
     }
-    stage('Docker Build') {
+    stage('Docker Build spring-boot') {
       agent any
       steps {
         sh 'docker build -t demo-2:latest .'
+      }
+    }
+    stage('Docker Build MYSQL') {
+      agent any
+      steps {
+        sh 'docker build -f Dockerfile -t sql-demo-2 .'
       }
     }
   }
