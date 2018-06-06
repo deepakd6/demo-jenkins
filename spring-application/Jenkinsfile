@@ -13,15 +13,12 @@ pipeline {
        sh 'mvn compile'
      }
     }
-	stage('Run spring-boot ') {
-     agent {
-      docker {
-       image 'maven:3.5.0'
+	stage('Docker Build spring-boot') {
+      agent any
+      steps {
+        sh 'docker build -t demo-1:latest .'
       }
-     }
-     steps {
-       sh 'mvn spring-boot:run'
-     }
+	
     }
 	
    }
