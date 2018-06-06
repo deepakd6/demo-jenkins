@@ -10,7 +10,7 @@ pipeline {
         }
       }
       steps {
-        sh 'mvn clean compile install'
+        sh 'mvn clean install'
       }
     }
     stage('Docker Build spring-boot') {
@@ -25,10 +25,16 @@ pipeline {
         sh 'docker build -f Dockerfile -t sql-demo-4 .'
       }
     }
-	stage('Docker run MYSQL Container') {
+	stage('Docker Build MYSQL') {
       agent any
       steps {
-        sh 'docker run sql-demo-4'
+        sh 'docker run sql-demo-4 .'
+      }
+    }
+	stage('Docker Active containers') {
+      agent any
+      steps {
+        sh 'docker ps'
       }
     }
   }
